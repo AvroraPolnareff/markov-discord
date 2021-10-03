@@ -190,15 +190,16 @@ function isModerator(member: Discord.GuildMember): boolean {
 function validateMessage(message: Discord.Message): string | null {
   const messageText = message.content.toLowerCase();
   let command = null;
-  const thisPrefix = messageText.substring(0, PREFIX.length);
+  const firstWord = messageText.substring(0, PREFIX.length);
+  const isFirstWordPrefix = PREFIX.split(",").some(prefix => prefix.trim() === messageText.substring(0, PREFIX.length) )
 
   if (messageText.split(' ').some((word: string) => PREFIX.split(",").some(prefix => prefix.trim() === word ))) {
     command = "respond";
   }
 
-  if (thisPrefix === PREFIX) {
+  if (isFirstWordPrefix) {
     const split = messageText.split(' ');
-    if (split[0] === PREFIX && split.length === 1) {
+    if (split.length === 1) {
       command = 'respond';
     } else if (split[1] === TRAIN) {
       command = 'train';
