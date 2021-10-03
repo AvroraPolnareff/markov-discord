@@ -191,7 +191,7 @@ function validateMessage(message: Discord.Message): string | null {
   const messageText = message.content.toLowerCase();
   let command = null;
   const firstWord = messageText.substring(0, PREFIX.length);
-  const isFirstWordPrefix = PREFIX.split(",").some(prefix => prefix.trim() === messageText.substring(0, PREFIX.length) )
+  const isFirstWordPrefix = PREFIX.split(",").some(prefix => prefix.trim() === messageText.split(' ')[0])
 
   if (messageText.split(' ').some((word: string) => PREFIX.split(",").some(prefix => prefix.trim() === word ))) {
     command = "respond";
