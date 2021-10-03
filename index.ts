@@ -192,7 +192,7 @@ function validateMessage(message: Discord.Message): string | null {
   let command = null;
   const thisPrefix = messageText.substring(0, PREFIX.length);
 
-  if (messageText.split(' ').some((word: string) => word === PREFIX)) {
+  if (messageText.split(' ').some((word: string) => PREFIX.split(",").some(prefix => prefix.trim() === word ))) {
     command = "respond";
   }
 
