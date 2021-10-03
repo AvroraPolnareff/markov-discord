@@ -49,6 +49,7 @@ const PAGE_SIZE = 100;
 let GAME = '!mark help';
 let ROLE: string | null;
 let PREFIX = '!mark';
+let TRAIN = process.env.TRAIN ?? "т"
 let STATE_SIZE = 2; // Value of 1 to 3, based on corpus quality
 let MAX_TRIES = 1000;
 let MIN_SCORE = 10;
@@ -199,8 +200,9 @@ function validateMessage(message: Discord.Message): string | null {
     const split = messageText.split(' ');
     if (split[0] === PREFIX && split.length === 1) {
       command = 'respond';
-    } else if (split[1] === 'train') {
+    } else if (split[1] === TRAIN) {
       command = 'train';
+      message.channel.send(`https://s.ura.news/760/images/news/upload/news/326/431/1052326431/4e2aa6b1428b1071d82271d2959335bf_250x0_800.445.0.0.jpg`);
     } else if (split[1] === 'help') {
       command = 'help';
     } else if (split[1] === 'regen') {
